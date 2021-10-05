@@ -38,7 +38,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func operatorTouched(_ sender: UIButton) {
-        print(sender.currentTitle!)
+        //print(sender.currentTitle!)
         inTypingMode = false
         if let op = sender.currentTitle {
             

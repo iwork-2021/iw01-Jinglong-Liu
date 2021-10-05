@@ -13,7 +13,10 @@ class Calculator: NSObject {
         case BinaryOp((Double,Double)->Double?)
         case EqualOp
         case Constant(Double)
+        case MemoryOp
+        case SecondOp
     }
+    //2nd ( )还没有做，其余已经实现
     var operations = [
         "=":Operation.EqualOp,
         "+":Operation.BinaryOp{
@@ -40,9 +43,13 @@ class Calculator: NSObject {
             (x, y)  in
             return pow(x,1/y)
         },
-        
-        "e":Operation.Constant(2.7182818),
-        "π":Operation.Constant(3.1415927),
+        "EE":Operation.BinaryOp{
+            (x, y)  in
+            return x * pow(10,y)
+        },
+        "A/C":Operation.Constant(0),
+        "e":Operation.Constant(M_E),
+        "π":Operation.Constant(Double.pi),
         "+/-":Operation.UnaryOp{
             x in
             return -x
@@ -113,10 +120,25 @@ class Calculator: NSObject {
         },
         "x!":Operation.UnaryOp{
             x in
-            return 1
+            return Calculator().fact(n: x)
             //assert(false)
-        }
+        },
+        "Rad":Operation.UnaryOp{
+            x in
+            return x/180*Double.pi
+        },
+        "Rand":Operation.UnaryOp{
+            x in
+            return (Double)(arc4random_uniform(UInt32(Int(x)))) + Double(arc4random()) / 0xFFFFFFFF
+        },
+        "mc":Operation.MemoryOp,
+        "mr":Operation.MemoryOp,
+        "m+":Operation.MemoryOp,
+        "m-":Operation.MemoryOp,
+        "2nd":Operation.SecondOp
+        
     ]
+    var mNumber:Double = 0
     
     struct Intermediate{
         var firstOp:Double
@@ -132,6 +154,8 @@ class Calculator: NSObject {
     func setIsNumber(flag:Bool){
         self.isNumber = flag
     }
+    
+    
     func performOnOperation(operation:String,operand:Double)->Double? {
         
         if var op = operations[operation]{
@@ -156,10 +180,55 @@ class Calculator: NSObject {
             case .UnaryOp(let function):
                 isNumber = true
                 return function(operand)
+            case .MemoryOp:
+                return handleMemoryOp(operation: operation, operand: operand)
             default :
                 return nil
             }
         }
         return nil
     }
+    func fact(n:Double)->Double?{
+        if n <= 0{
+            return 1
+        }
+        var m = (Double)((Int)(n));
+        var result:Double = 1
+        while m > 0 {
+            result *= m
+            m -= 1
+        }
+        return result
+    }
+    func handleMemoryOp(operation:String,operand:Double)->Double?{
+        if operation == "mr"{
+            return getMemory()
+        }
+        else if operation == "mc"{
+            clearMemory()
+            return operand
+        }
+        else if operation == "m+"{
+            return setMemory(x: operand)
+        }
+        else if operation == "m-"{
+            return setNegativeMemory(x: operand)
+        }
+        return operand
+    }
+    func setMemory(x:Double)->Double{
+        mNumber = x
+        return x
+    }
+    func getMemory()->Double{
+        return mNumber
+    }
+    func setNegativeMemory(x:Double)->Double{
+        mNumber = -x
+        return x
+    }
+    func clearMemory(){
+        mNumber = 0
+    }
+    
 }
