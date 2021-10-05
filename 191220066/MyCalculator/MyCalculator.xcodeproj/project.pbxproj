@@ -15,6 +15,7 @@
 		04A76D76270BE97300D35404 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A76D74270BE97300D35404 /* LaunchScreen.storyboard */; };
 		04A76D81270BE97300D35404 /* MyCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A76D80270BE97300D35404 /* MyCalculatorTests.swift */; };
 		04A76D8C270BE97300D35404 /* MyCalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A76D8B270BE97300D35404 /* MyCalculatorUITests.swift */; };
+		04A76DA3270C254900D35404 /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A76DA2270C254900D35404 /* Calculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		04A76D87270BE97300D35404 /* MyCalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyCalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		04A76D8B270BE97300D35404 /* MyCalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCalculatorUITests.swift; sourceTree = "<group>"; };
 		04A76D8D270BE97300D35404 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04A76DA2270C254900D35404 /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		04A76D5D270BE97000D35404 = {
 			isa = PBXGroup;
 			children = (
+				04A76DA2270C254900D35404 /* Calculator.swift */,
 				04A76D68270BE97000D35404 /* MyCalculator */,
 				04A76D7F270BE97300D35404 /* MyCalculatorTests */,
 				04A76D8A270BE97300D35404 /* MyCalculatorUITests */,
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04A76D6E270BE97000D35404 /* ViewController.swift in Sources */,
+				04A76DA3270C254900D35404 /* Calculator.swift in Sources */,
 				04A76D6A270BE97000D35404 /* AppDelegate.swift in Sources */,
 				04A76D6C270BE97000D35404 /* SceneDelegate.swift in Sources */,
 			);
